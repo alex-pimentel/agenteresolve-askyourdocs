@@ -42,7 +42,9 @@ def _input_text(ti: ToolInput) -> str:
 
 def run(ti: ToolInput) -> tuple[bytes, str, str]:
     text = _input_text(ti)
-    question = str((ti.params or {}).get("question") or (ti.params or {}).get("q") or "Resuma os documentos.")
+    question = str(
+        (ti.params or {}).get("question") or (ti.params or {}).get("q") or "Resuma os documentos."
+    )
     out = llm_complete(
         f"Document(s):\n{text}\n\nQuestion: {question}\n\n"
         "Answer in the document's language and cite the relevant excerpt."
